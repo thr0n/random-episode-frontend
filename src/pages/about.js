@@ -6,7 +6,7 @@ export default ({ data }) =>
   <Container>
     <Header />
     <p>
-      We're the only site running on your computer dedicated to showing the best
-      photos and videos of pandas eating lots of food.
+      Dies ist die einzige Webiste auf deinem Computer, die dir jederzeit eine 
+      zufällige Hörspiel-Folge vorschlägt.
     </p>
   </Container>

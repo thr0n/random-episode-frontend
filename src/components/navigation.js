@@ -6,9 +6,9 @@ export default props => <div style={{ display: 'flex' }}>
         <Link to="/">Home</Link>
     </div>
     <div className="margin-right">
-        <Link to="/about">About</Link>
+        <Link to="/about">Über</Link>
     </div>
     <div>
-        <Link to="/contact">Contact</Link>
+        <Link to="/contact">Kontakt</Link>
     </div>
 </div>

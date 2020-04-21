@@ -5,5 +5,5 @@ import Container from "../components/container"
 export default () =>
     <Container>
         <Header />
-        <p>Send us a message!</p>
+        <p>Sende mir eine Nachricht!</p>
     </Container>
