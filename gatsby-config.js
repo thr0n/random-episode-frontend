@@ -1,15 +1,16 @@
 module.exports = {
+  pathPrefix: '/random-episode-frontend',
   siteMetadata: {
-    title: `random episode`,
+    title: `random episode`
   },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: `${__dirname}/src/data`,
-      },
+        path: `${__dirname}/src/data`
+      }
     },
-    `gatsby-transformer-json`,
-  ],
+    `gatsby-transformer-json`
+  ]
 }
