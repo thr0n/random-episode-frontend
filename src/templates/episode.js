@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Header from '../components/header'
 import Container from '../components/container'
 
@@ -16,9 +16,21 @@ export default ({ data }) => {
             width={episode.image.width * 0.5}
             alt={episode.title}
           />
-          <p>
-            <a href={episode.url}>Abspielen auf Spotify</a>
-          </p>
+          <div
+            style={{
+              width: '320px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: '10px'
+            }}
+          >
+            <div>
+              <a href={episode.url}>Abspielen auf Spotify</a>
+            </div>
+            <div>
+              <Link to={'/'}>Zurück</Link>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
