@@ -2,9 +2,11 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Header from '../components/header'
 import Container from '../components/container'
+import { chooseRandomEpisodeUrl } from '../common/util'
 
 export default ({ data }) => {
   const episode = data.dataJson
+  const alternativeProposal = chooseRandomEpisodeUrl(data.allDataJson.edges)
 
   return (
     <Container>
@@ -31,6 +33,9 @@ export default ({ data }) => {
               <Link to={'/'}>Zurück</Link>
             </div>
           </div>
+          <p style={{ paddingTop: '10px' }}>
+            <Link to={alternativeProposal}>Lieber etwas anderes...</Link>
+          </p>
         </div>
       </div>
     </Container>
@@ -39,6 +44,16 @@ export default ({ data }) => {
 
 export const query = graphql`
   query($slug: String!) {
+    allDataJson {
+      totalCount
+      edges {
+        node {
+          fields {
+            slug
+          }
+        }
+      }
+    }
     dataJson(fields: { slug: { eq: $slug } }) {
       artist
       title

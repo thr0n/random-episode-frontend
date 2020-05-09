@@ -1,18 +1,15 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { chooseRandomEpisodeUrl } from "../common/util"
 
 export class Randomizer extends React.Component {
   state = { episodeUrl: null }
 
   componentDidMount() {
     this.setState({
-      episodeUrl: this.chooseRandomEpisodeUrl(this.props.allEpisodes)
+      episodeUrl: chooseRandomEpisodeUrl(this.props.allEpisodes)
     })
   }
-
-  chooseRandomEpisodeUrl = episodes =>
-    episodes[Math.floor(Math.random() * this.props.allEpisodes.length)].node
-      .fields.slug
 
   render = () => (
     <div>
