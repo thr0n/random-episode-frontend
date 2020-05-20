@@ -1,0 +1,18 @@
+.container {
+  position: relative;
+  color: white;
+}
+
+.artist-bar {
+  position: absolute;
+  bottom: 4px;
+  left: 0px;
+  font: bold 10px/16px Helvetica, Sans-Serif;
+  background: rgb(0, 0, 0); /* fallback color */
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px;
+}
+
+.spacer {
+  padding: 0 2px;
+}
