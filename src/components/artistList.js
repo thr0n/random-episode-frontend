@@ -11,7 +11,7 @@ export const ArtistList = props => (
             artistId={artist.node.id}
             artistName={artist.node.name}
             artistImage={artist.node.image}
-            episodes={result}
+            episodes={props.episodesByArtist.group.filter(group => group.artistName === artist.node.name)[0].edges}
           />
         </div>
       )

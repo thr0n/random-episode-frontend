@@ -1,6 +1,7 @@
 .container {
   position: relative;
   color: white;
+  cursor: pointer;
 }
 
 .artist-bar {
