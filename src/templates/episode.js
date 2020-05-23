@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 import Header from '../components/header'
 import Container from '../components/container'
 import { chooseRandomEpisodeUrl } from '../common/util'
+import episodeStyles from './episode.module.css'
 
 export default ({ data }) => {
   const episode = data.dataJson
@@ -14,8 +15,8 @@ export default ({ data }) => {
       <div>
         <div>
           <img
+            className={episodeStyles.episodeImage}
             src={episode.image.url}
-            width={episode.image.width * 0.5}
             alt={episode.title}
           />
           <div
@@ -55,7 +56,8 @@ export const query = graphql`
       }
     }
     dataJson(fields: { slug: { eq: $slug } }) {
-      artist
+      artistId
+      artistName
       title
       url
       image {

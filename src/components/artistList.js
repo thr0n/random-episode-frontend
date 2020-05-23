@@ -1,26 +1,20 @@
 import React from 'react'
+import { ArtistTile } from './artistTile'
+import listStyles from './artistList.module.css'
 
-export class ArtistList extends React.Component {
-  render() {
-    return (
-      <div style={{ marginTop: '8%' }}>
-        Bisher hinzugefügt:
-        <div>
-          {this.props.artists.map(artist => {
-            const { node } = artist
-            return (
-              <div key={node.id}>
-                <img
-                  src={node.image.url}
-                  height={node.image.height/2}
-                  width={node.image.height/2}
-                  alt={node.name}
-                />
-              </div>
-            )
-          })}
+export const ArtistList = props => (
+  <div className={listStyles.wrapper}>
+    {props.knownArtists.edges.map((artist, index) => {
+      return (
+        <div key={index} className={listStyles.artistTile}>
+          <ArtistTile
+            artistId={artist.node.id}
+            artistName={artist.node.name}
+            artistImage={artist.node.image}
+            episodes={result}
+          />
         </div>
-      </div>
-    )
-  }
-}
+      )
+    })}
+  </div>
+)

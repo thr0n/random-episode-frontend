@@ -6,25 +6,47 @@ import { Randomizer } from '../components/randomizer'
 import { ArtistList } from '../components/artistList'
 
 export default ({ data }) => {
-  console.log(data)
+  const { episodesByArtist, knownArtists } = data
   return (
     <Container>
       <Header />
       <p>
         Was sollen wir heute hören? Im Moment stehen{' '}
-        <strong>{data.allDataJson.totalCount} Hörspiele</strong> von{' '}
-        <strong>{data.allDataJson.group.length} Interpreten</strong> zur
+        <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
+        <strong>{episodesByArtist.group.length} Interpreten</strong> zur
         Auswahl!
       </p>
-      <Randomizer allEpisodes={data.allDataJson.edges} />
-      <ArtistList artists={data.knownArtists.edges} />
+      <Randomizer />
+      <ArtistList
+        episodesByArtist={episodesByArtist}
+        knownArtists={knownArtists}
+      />
     </Container>
   )
 }
 
 export const query = graphql`
   query {
+    episodesByArtist: allDataJson {
+      totalCount
+      group(field: artistName) {
+        totalCount
+        artistName: fieldValue
+        edges {
+          node {
+            id
+            artistId
+            artistName
+            title
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
     knownArtists: allArtistsJson {
+      totalCount
       edges {
         node {
           id
@@ -33,21 +55,6 @@ export const query = graphql`
             height
             url
             width
-          }
-        }
-      }
-    }
-    allDataJson {
-      group(field: artist) {
-        artistName: fieldValue
-      }
-    }
-    allDataJson {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
           }
         }
       }
