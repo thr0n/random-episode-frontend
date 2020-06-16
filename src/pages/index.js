@@ -2,7 +2,6 @@ import React from 'react'
 import Header from '../components/header'
 import Container from '../components/container'
 import { graphql } from 'gatsby'
-import { Randomizer } from '../components/randomizer'
 import { ArtistList } from '../components/artistList'
 
 export default ({ data }) => {
@@ -16,7 +15,6 @@ export default ({ data }) => {
         <strong>{episodesByArtist.group.length} Interpreten</strong> zur
         Auswahl!
       </p>
-      <Randomizer />
       <ArtistList
         episodesByArtist={episodesByArtist}
         knownArtists={knownArtists}

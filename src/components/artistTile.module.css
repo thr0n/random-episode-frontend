@@ -17,3 +17,18 @@
 .spacer {
   padding: 0 2px;
 }
+
+.random-button-container {
+  background-color: black;
+  height: 106px;
+  width: 106px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random-button {
+  height: 40px;
+  width: 40px;
+  color: azure;
+}

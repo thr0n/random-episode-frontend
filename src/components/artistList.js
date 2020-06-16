@@ -4,6 +4,11 @@ import listStyles from './artistList.module.css'
 
 export const ArtistList = props => (
   <div className={listStyles.wrapper}>
+    <div className={listStyles.artistTile}>
+      <ArtistTile artistName="Überrasch mich..."
+                  episodes={props.episodesByArtist.group.map(e => e.edges).flat()}
+      />
+    </div>
     {props.knownArtists.edges.map((artist, index) => {
       return (
         <div key={index} className={listStyles.artistTile}>
