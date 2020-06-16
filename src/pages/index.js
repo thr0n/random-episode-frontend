@@ -4,6 +4,10 @@ import Container from '../components/container'
 import { graphql } from 'gatsby'
 import { ArtistList } from '../components/artistList'
 
+if (typeof window !== "undefined") {
+  require("smooth-scroll")('a[href*="#"]')
+}
+
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
   return (
