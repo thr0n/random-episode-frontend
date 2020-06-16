@@ -1,0 +1,33 @@
+.container {
+  margin-top: 20px;
+  padding: 15px 0 15px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: lightgray;
+  align-items: center;
+  color: #383838;
+  font-size: 12px;
+}
+
+.githubBar {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.github-icon {
+  color: black;
+  width: 24px;
+  height: 24px;
+}
+
+.heart {
+  color: red;
+}
+
+.tape-image {
+  width: 42px;
+  padding-bottom: 5px;
+}

@@ -2,15 +2,20 @@ html {
     color: #F7EFE9;
     background-color: grey;
     font-family: 'Courier New', Courier, monospace;
-  }
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
 
 a {
-  text-decoration: underline;
-  color: white;
+    text-decoration: underline;
+    color: white;
 }
 
 .margin-right {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 .mood-image-overlay {
