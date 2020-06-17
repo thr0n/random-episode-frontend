@@ -8,23 +8,25 @@ import { ArtistList } from '../components/artistList'
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
   return (
-    <Container>
+    <div>
       <Helmet>
         <meta charSet='utf-8' />
         <title>random episode - Was hören wir heute?</title>
       </Helmet>
-      <Header />
-      <p>
-        Was sollen wir heute hören? Im Moment stehen{' '}
-        <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
-        <strong>{episodesByArtist.group.length} Interpreten</strong> zur
-        Auswahl!
-      </p>
-      <ArtistList
-        episodesByArtist={episodesByArtist}
-        knownArtists={knownArtists}
-      />
-    </Container>
+      <Container>
+        <Header />
+        <p>
+          Was sollen wir heute hören? Im Moment stehen{' '}
+          <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
+          <strong>{episodesByArtist.group.length} Interpreten</strong> zur
+          Auswahl!
+        </p>
+        <ArtistList
+          episodesByArtist={episodesByArtist}
+          knownArtists={knownArtists}
+        />
+      </Container>
+    </div>
   )
 }
 
