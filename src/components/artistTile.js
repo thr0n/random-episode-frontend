@@ -15,7 +15,7 @@ export const ArtistTile = props => (
         />
       ) : (
         <div className={tileStyles.randomButtonContainer}>
-          <FaRandom class={tileStyles.randomButton}/>
+          <FaRandom className={tileStyles.randomButton}/>
         </div>
       )}
       <span className={tileStyles.artistBar}>
