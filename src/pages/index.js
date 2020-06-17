@@ -1,13 +1,18 @@
 import React from 'react'
+import { graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
 import Header from '../components/header'
 import Container from '../components/container'
-import { graphql } from 'gatsby'
 import { ArtistList } from '../components/artistList'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
   return (
     <Container>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>random episode - Was hören wir heute?</title>
+      </Helmet>
       <Header />
       <p>
         Was sollen wir heute hören? Im Moment stehen{' '}
