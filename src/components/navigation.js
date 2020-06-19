@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import navigationStyles from "./navigation.module.scss"
 
 export default props => (
-  <div style={{ display: 'flex' }}>
-    <div className="margin-right">
+  <div className={navigationStyles.navContainer}>
+    <div>
       <Link to="/">Home</Link>
     </div>
-    <div className="margin-right">
+    <div>
       <Link to="/about">Über</Link>
     </div>
     <div>

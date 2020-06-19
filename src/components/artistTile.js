@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { FaRandom } from 'react-icons/fa';
 import { chooseRandomEpisodeUrl } from '../common/util'
-import tileStyles from './artistTile.module.css'
+import tileStyles from './artistTile.module.scss'
 
 export const ArtistTile = props => (
   <div className={tileStyles.container}>
@@ -10,7 +10,6 @@ export const ArtistTile = props => (
       {props.artistImage ? (
         <img
           src={props.artistImage.url}
-          height={106}
           alt={props.artistName}
         />
       ) : (
