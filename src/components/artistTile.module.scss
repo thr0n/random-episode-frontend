@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .container {
   position: relative;
   color: white;
@@ -20,8 +22,8 @@
 
 .random-button-container {
   background-color: black;
-  height: 106px;
-  width: 106px;
+  height: $tile-width;
+  width: $tile-width;
   display: flex;
   justify-content: center;
   align-items: center;

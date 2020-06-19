@@ -2,6 +2,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Navigation from './navigation'
 import Container from './container'
+import headerStyles from './header.module.scss'
 
 export default () => {
   const data = useStaticQuery(
@@ -17,9 +18,9 @@ export default () => {
   )
   return (
     <Container>
-      <div>
-        <Navigation />
+      <div className={headerStyles.headerContainer}>
         <h1>{data.site.siteMetadata.title}</h1>
+        <Navigation />
       </div>
     </Container>
   )

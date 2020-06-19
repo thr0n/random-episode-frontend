@@ -1,19 +1,20 @@
+@import "../styles/variables";
+
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    background-color: transparent;
 }
 
-@media screen and (min-width: 500px){
+@media screen and (min-width: $min-width) {
     .wrapper {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
-@media screen and (min-width: 800px){
+@media screen and (min-width: $tablet-width){
     .wrapper {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 

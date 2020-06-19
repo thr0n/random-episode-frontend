@@ -1,5 +1,6 @@
 import React from 'react'
-import moodImageStyles from "./moodimage.module.css"
+import moodImageStyles from "./moodimage.module.scss"
+import PropTypes from 'prop-types'
 
 export const MoodImage = props => (
   <div className={moodImageStyles.moodImageContainer}>
@@ -9,3 +10,7 @@ export const MoodImage = props => (
     </div>
   </div>
 )
+
+MoodImage.propTypes = {
+  image: PropTypes.string
+}

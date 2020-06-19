@@ -3,6 +3,7 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build:
+    working_directory: ~/repo
     executor:
       name: node/default
     steps:
@@ -10,14 +11,18 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
   deploy:
     executor:
       name: node/default
     steps:
-      - node/with-cache:
-          steps:
-            - run: npm deploy
-
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Deploy to GitHub pages
+          command: npm run deploy
 
 workflows:
     build:
