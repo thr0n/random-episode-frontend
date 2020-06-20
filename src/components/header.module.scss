@@ -1,4 +1,16 @@
+@import "../styles/variables";
+
 .header-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media(max-width: $half-width) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width: $min-width) {
+  h1 {
+    font-size: 1.5em;
+  }
 }
