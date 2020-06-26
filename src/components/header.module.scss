@@ -1,16 +1,51 @@
 @import "../styles/variables";
 
-.header-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  @media(max-width: $half-width) {
-    grid-template-columns: 1fr;
+.header-image {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  img {
+    filter: blur(1px);
+    object-fit: cover;
+    height: 175px;
+    margin:-1px;
+    padding:1px;
+    @media (max-width: $min-width) {
+      height: 120px;
+    }
   }
 }
 
-@media(max-width: $min-width) {
-  h1 {
-    font-size: 1.5em;
+.header-container {
+  padding: 0 10px 0 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  position: absolute;
+  height: 60px;
+  margin-top: -60px;
+  @media(max-width: $half-width) {
+    grid-template-columns: 1fr;
+    outline: 1px hotpink;
+    height: 90px;
+    margin-top: -90px;
   }
+  @media(max-width: $min-width) {
+    height: 70px;
+    margin-top: -70px;
+  }
+  h1 {
+    margin-top: 14px;
+    @media(max-width: $half-width) {
+      margin-bottom: -30px;
+    }
+    @media(max-width: $min-width) {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.no-top-distance {
+  margin-top: -30px
 }

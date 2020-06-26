@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import Navigation from './navigation'
-import Container from './container'
+import tapes from '../images/tapes.jpeg'
 import headerStyles from './header.module.scss'
 
 export default () => {
@@ -17,11 +17,14 @@ export default () => {
     `
   )
   return (
-    <Container>
-      <div className={headerStyles.headerContainer}>
-        <h1>{data.site.siteMetadata.title}</h1>
-        <Navigation />
-      </div>
-    </Container>
+    <div className={headerStyles.noTopDistance}>
+        <div className={headerStyles.headerImage}>
+          <img src={tapes}/>
+        </div>
+          <div className={headerStyles.headerContainer}>
+            <h1>{data.site.siteMetadata.title}</h1>
+            <Navigation />
+          </div>
+    </div>
   )
 }
