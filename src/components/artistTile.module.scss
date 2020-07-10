@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.inactive-tile {
+  filter: grayscale(100%);
+}
+
 .artist-bar {
   position: absolute;
   bottom: 4px;

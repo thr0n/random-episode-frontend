@@ -7,6 +7,7 @@ import { ArtistList } from '../components/artistList'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
+  knownArtists.edges.map(artist => Object.assign(artist, { active: true }))
   return (
     <div>
       <Helmet>
