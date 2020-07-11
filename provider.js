@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
-export const myContext = React.createContext();
+const defaultState = {
+  artistSelection: [],
+  setArtistSelection: () => {},
+  randomEpisodeUrl: null,
+  setRandomEpisodeUrl: () => {}
+}
+
+export const myContext = React.createContext(defaultState);
 
 const Provider = props => {
   const [artistSelection, setArtistSelection] = useState([]);

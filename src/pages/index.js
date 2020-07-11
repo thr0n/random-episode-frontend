@@ -21,6 +21,11 @@ export default ({ data }) => {
           <strong>{episodesByArtist.group.length} Interpreten</strong> zur
           Auswahl!
         </p>
+        <p>
+          Klicke einfach direkt auf "Shuffle", um einen Vorschlag aus allen
+          verfügbaren Folgen zu bekommen. Oder deaktiviere einzelne
+          Hörspielserien, in dem du sie vorher anklickst.
+        </p>
         <ArtistList
           episodesByArtist={episodesByArtist.group}
           knownArtists={knownArtists.edges}

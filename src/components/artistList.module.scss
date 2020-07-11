@@ -1,6 +1,7 @@
 @import "../styles/variables";
 
 .wrapper {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr;
     grid-column-gap: 5px;
