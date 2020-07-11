@@ -7,11 +7,10 @@ import { ArtistList } from '../components/artistList'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
-  knownArtists.edges.map(artist => Object.assign(artist, { active: true }))
   return (
     <div>
       <Helmet>
-        <meta charSet='utf-8' />
+        <meta charSet="utf-8" />
         <title>random episode - Was hören wir heute?</title>
       </Helmet>
       <Container>
@@ -23,8 +22,8 @@ export default ({ data }) => {
           Auswahl!
         </p>
         <ArtistList
-          episodesByArtist={episodesByArtist}
-          knownArtists={knownArtists}
+          episodesByArtist={episodesByArtist.group}
+          knownArtists={knownArtists.edges}
         />
       </Container>
     </div>
