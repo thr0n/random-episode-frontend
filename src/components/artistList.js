@@ -60,13 +60,13 @@ export const ArtistList = props => {
           <>
             {/*TODO: just a quick fix. extract styles to classes.*/}
             <Link to={context.randomEpisodeUrl} style={{ marginRight: '10px' }}>
-              Lets go
+              <button className={listStyles.button}>Shuffle</button>
             </Link>
             <span
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
               onClick={() => resetFilters({ context })}
             >
-              Zurücksetzen
+              <button className={listStyles.button}>Zurücksetzen</button>
             </span>
             <div className={listStyles.wrapper}>
               {context.artistSelection.map((artist, index) => {
