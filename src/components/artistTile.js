@@ -9,6 +9,7 @@ export const ArtistTile = props => (
     <Link to={chooseRandomEpisodeUrl(props.episodes)}>
       {props.artistImage ? (
         <img
+          className={tileStyles.tileButton}
           src={props.artistImage.url}
           alt={props.artistName}
         />
