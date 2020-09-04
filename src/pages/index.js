@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import Header from '../components/header'
 import Container from '../components/container'
 import { ArtistList } from '../components/artistList'
+import { Footer } from '../components/footer'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
@@ -14,7 +15,6 @@ export default ({ data }) => {
         <title>random episode - Was hören wir heute?</title>
       </Helmet>
       <Container>
-        <Header />
         <p>
           Was sollen wir heute hören? Im Moment stehen{' '}
           <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
