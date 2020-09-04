@@ -15,7 +15,7 @@ export default ({ data }) => {
   return (
     <Container>
       <Header />
-      <p/>
+      <p />
       <div>
         <a href={episode.url}>
           <img
@@ -26,9 +26,7 @@ export default ({ data }) => {
         </a>
         <div className={episodeStyles.buttonContainer}>
           <Link to={'/'}>Zurück</Link>
-          <Link to={alternativeProposal}>
-            Mehr von "{episode.artistName}"
-          </Link>
+          <Link to={alternativeProposal}>Mehr von "{episode.artistName}"</Link>
         </div>
       </div>
     </Container>

@@ -50,7 +50,7 @@ export const query = graphql`
         }
       }
     }
-    knownArtists: allArtistsJson {
+    knownArtists: allArtistsJson(sort: { fields: name }) {
       totalCount
       edges {
         node {
