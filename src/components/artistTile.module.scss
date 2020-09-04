@@ -6,6 +6,11 @@
   cursor: pointer;
 }
 
+.tile-button {
+  height: $tile-width;
+  width: $tile-width;
+}
+
 .inactive-tile {
   filter: grayscale(100%);
 }

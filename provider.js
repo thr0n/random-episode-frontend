@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const defaultState = {
   artistSelection: [],
@@ -7,26 +7,25 @@ const defaultState = {
   setRandomEpisodeUrl: () => {}
 }
 
-export const myContext = React.createContext(defaultState);
+export const myContext = React.createContext(defaultState)
 
-const Provider = props => {
-  const [artistSelection, setArtistSelection] = useState([]);
-  const [randomEpisodeUrl, setRandomEpisodeUrl] = useState(null);
+const Provider = (props) => {
+  const [artistSelection, setArtistSelection] = useState([])
+  const [randomEpisodeUrl, setRandomEpisodeUrl] = useState(null)
 
   return (
-    <myContext.Provider value={{
-      artistSelection,
-      setArtistSelection: (currentSelection) => setArtistSelection(currentSelection),
-      randomEpisodeUrl,
-      setRandomEpisodeUrl: (newValue) => setRandomEpisodeUrl(newValue)
-    }}>
+    <myContext.Provider
+      value={{
+        artistSelection,
+        setArtistSelection: (currentSelection) =>
+          setArtistSelection(currentSelection),
+        randomEpisodeUrl,
+        setRandomEpisodeUrl: (newValue) => setRandomEpisodeUrl(newValue)
+      }}
+    >
       {props.children}
     </myContext.Provider>
   )
-};
+}
 
-export default ({ element }) => (
-  <Provider>
-    {element}
-  </Provider>
-);
+export default ({ element }) => <Provider>{element}</Provider>

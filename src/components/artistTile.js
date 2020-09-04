@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRandom } from 'react-icons/fa'
 import tileStyles from './artistTile.module.scss'
 
-export const ArtistTile = props => {
+export const ArtistTile = (props) => {
   const tileStyle = props.isActive ? null : tileStyles.inactiveTile
   return (
     <div
@@ -10,7 +10,7 @@ export const ArtistTile = props => {
       onClick={() => props.onClick(props.artistId)}
     >
       {props.artistImage ? (
-        <img src={props.artistImage.url} alt={props.artistName} />
+        <img src={props.artistImage.url} alt={props.artistName} className={tileStyles.tileButton}/>
       ) : (
         <div className={tileStyles.randomButtonContainer}>
           <FaRandom className={tileStyles.randomButton} />

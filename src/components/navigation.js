@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import navigationStyles from "./navigation.module.scss"
+import navigationStyles from './navigation.module.scss'
 
-export default props => (
+export default (props) => (
   <div className={navigationStyles.navContainer}>
     <div>
       <Link to="/">Home</Link>

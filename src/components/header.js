@@ -18,13 +18,13 @@ export default () => {
   )
   return (
     <div className={headerStyles.noTopDistance}>
-        <div className={headerStyles.headerImage}>
-          <img src={tapes}/>
-        </div>
-          <div className={headerStyles.headerContainer}>
-            <h1>{data.site.siteMetadata.title}</h1>
-            <Navigation />
-          </div>
+      <div className={headerStyles.headerImage}>
+        <img src={tapes} />
+      </div>
+      <div className={headerStyles.headerContainer}>
+        <h1>{data.site.siteMetadata.title}</h1>
+        <Navigation />
+      </div>
     </div>
   )
 }

@@ -5,38 +5,38 @@ import listStyles from './artistList.module.scss'
 import { chooseRandomEpisodeUrl } from '../common/util'
 import { myContext } from '../../provider'
 
-export const ArtistList = props => {
+export const ArtistList = (props) => {
   const onTileClick = ({ context, id, isActive }) => {
     const disabledArtists = context.artistSelection.filter(
-      artist => artist.isActive === false
+      (artist) => artist.isActive === false
     )
     if (disabledArtists.length >= props.knownArtists.length - 1 && isActive) {
       return
     }
 
-    const updatedSelection = context.artistSelection.map(artist => {
+    const updatedSelection = context.artistSelection.map((artist) => {
       return artist.node.id === id ? { ...artist, isActive: !isActive } : artist
     })
     context.setArtistSelection(updatedSelection)
 
     const filteredEpisodes = filterEpisodes(
       updatedSelection
-        .filter(artist => artist.isActive)
-        .map(artist => artist.node.name)
+        .filter((artist) => artist.isActive)
+        .map((artist) => artist.node.name)
     )
     const flattenedEpisodes = flattenEpisodes(filteredEpisodes)
     context.setRandomEpisodeUrl(chooseRandomEpisodeUrl(flattenedEpisodes))
   }
 
-  const filterEpisodes = selectedArtistNames =>
+  const filterEpisodes = (selectedArtistNames) =>
     props.episodesByArtist
-      .filter(artist => selectedArtistNames.includes(artist.artistName))
+      .filter((artist) => selectedArtistNames.includes(artist.artistName))
       .flat()
 
-  const flattenEpisodes = episodes => episodes.map(e => e.edges).flat()
+  const flattenEpisodes = (episodes) => episodes.map((e) => e.edges).flat()
 
   const resetFilters = ({ context }) => {
-    const updatedArtists = context.artistSelection.map(artist => {
+    const updatedArtists = context.artistSelection.map((artist) => {
       return { ...artist, isActive: true }
     })
     context.setArtistSelection(updatedArtists)
@@ -44,10 +44,10 @@ export const ArtistList = props => {
 
   return (
     <myContext.Consumer>
-      {context => {
+      {(context) => {
         if (!context || context.artistSelection.length === 0) {
           context.setArtistSelection(
-            props.knownArtists.map(artist =>
+            props.knownArtists.map((artist) =>
               Object.assign(artist, { isActive: true })
             )
           )
