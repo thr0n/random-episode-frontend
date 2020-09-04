@@ -14,7 +14,7 @@ export const ArtistTile = (props) => (
           alt={props.artistName}
         />
       ) : (
-        <div className={tileStyles.randomButtonContainer}>
+        <div className={`${tileStyles.randomButtonContainer} ${tileStyles.tileButton}`}>
           <FaRandom className={tileStyles.randomButton} />
         </div>
       )}
