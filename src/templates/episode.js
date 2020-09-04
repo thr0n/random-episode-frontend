@@ -7,36 +7,28 @@ import episodeStyles from './episode.module.css'
 
 export default ({ data }) => {
   const episode = data.dataJson
-  const alternativeProposal = chooseRandomEpisodeUrl(data.allDataJson.edges)
+  const filteredEpisodes = data.allDataJson.edges.filter(
+    (edge) => edge.node.artistId === episode.artistId
+  )
+  const alternativeProposal = chooseRandomEpisodeUrl(filteredEpisodes)
 
   return (
     <Container>
       <Header />
+      <p/>
       <div>
-        <div>
+        <a href={episode.url}>
           <img
             className={episodeStyles.episodeImage}
             src={episode.image.url}
             alt={episode.title}
           />
-          <div
-            style={{
-              width: '320px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginTop: '10px'
-            }}
-          >
-            <div>
-              <a href={episode.url}>Abspielen auf Spotify</a>
-            </div>
-            <div>
-              <Link to={'/'}>Zurück</Link>
-            </div>
-          </div>
-          <p style={{ paddingTop: '10px' }}>
-            <Link to={alternativeProposal}>Lieber etwas anderes...</Link>
-          </p>
+        </a>
+        <div className={episodeStyles.buttonContainer}>
+          <Link to={'/'}>Zurück</Link>
+          <Link to={alternativeProposal}>
+            Mehr von "{episode.artistName}"
+          </Link>
         </div>
       </div>
     </Container>
@@ -49,6 +41,7 @@ export const query = graphql`
       totalCount
       edges {
         node {
+          artistId
           fields {
             slug
           }
@@ -58,6 +51,7 @@ export const query = graphql`
     dataJson(fields: { slug: { eq: $slug } }) {
       artistId
       artistName
+      episodeId
       title
       url
       image {
