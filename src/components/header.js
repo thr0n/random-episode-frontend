@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, Link } from 'gatsby'
 import Navigation from './navigation'
 import tapes from '../images/tapes.jpeg'
 import headerStyles from './header.module.scss'
@@ -22,7 +22,9 @@ export default () => {
         <img src={tapes} />
       </div>
       <div className={headerStyles.headerContainer}>
-        <h1>{data.site.siteMetadata.title}</h1>
+        <Link to="/">
+          <h1>{data.site.siteMetadata.title}</h1>
+        </Link>
         <Navigation />
       </div>
     </div>

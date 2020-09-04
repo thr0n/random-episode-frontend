@@ -1,20 +1,29 @@
+@import "../styles/variables";
+
 .mood-image-container {
     display: flex;
     align-items: center;
     flex-direction: column;
     position: relative;
+    margin-top: 40px;
 }
 
 .mood-image {
     object-fit: cover;
-    width: 1280px;
-    height: 353px;
+    height: 300px;
+    width: 100%;
+    @media screen and (max-width: $half-width){
+        height: 250px;
+    }
+    @media screen and (max-width: $min-width){
+        height: 170px;
+    }
 }
 
 .mood-image-overlay {
     border: 1px #5b5b5b dotted;
     margin-top: -50px;
     background-color: whitesmoke;
-    color: dimgrey;
     padding: 0px 12px 0px 12px;
+    width: 85%;
 }

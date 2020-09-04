@@ -1,10 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import Header from '../components/header'
 import Container from '../components/container'
 import { ArtistList } from '../components/artistList'
-import { Footer } from '../components/footer'
+import { MoodImage } from '../components/moodImage'
+import tape from '../images/tape-large.jpeg'
+import { AboutSection } from '../components/aboutSection'
+import indexStyles from './index.module.scss'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
@@ -15,16 +17,26 @@ export default ({ data }) => {
         <title>random episode - Was hören wir heute?</title>
       </Helmet>
       <Container>
-        <p>
-          Was sollen wir heute hören? Im Moment stehen{' '}
-          <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
-          <strong>{episodesByArtist.group.length} Interpreten</strong> zur
-          Auswahl!
-        </p>
-        <ArtistList
-          episodesByArtist={episodesByArtist}
-          knownArtists={knownArtists}
-        />
+        <div className={indexStyles.episodeOverlay}>
+          <h2 id="episoden">Episoden</h2>
+          <p>
+            Was sollen wir heute hören? Im Moment stehen{' '}
+            <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}
+            <strong>{episodesByArtist.group.length} Interpreten</strong> zur
+            Auswahl.
+          </p>
+          <p>
+            Klicke auf eine bestimmte Kachel oder lass dich einfach überraschen!
+          </p>
+          <ArtistList
+            episodesByArtist={episodesByArtist}
+            knownArtists={knownArtists}
+          />
+          <p />
+        </div>
+        <MoodImage image={tape}>
+          <AboutSection />
+        </MoodImage>
       </Container>
     </div>
   )

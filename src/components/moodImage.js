@@ -1,5 +1,5 @@
 import React from 'react'
-import moodImageStyles from './moodimage.module.scss'
+import moodImageStyles from "./moodimage.module.scss"
 import PropTypes from 'prop-types'
 
 export const MoodImage = (props) => (

@@ -17,3 +17,10 @@ a {
 .margin-right {
     margin-right: 5px;
 }
+
+.mood-image-overlay {
+    margin-top: -50px;
+    background-color: whitesmoke;
+    color: dimgrey;
+    padding: 0px 12px 0px 12px;
+}
