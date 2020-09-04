@@ -14,7 +14,6 @@ export default ({ data }) => {
 
   return (
     <Container>
-      <Header />
       <p />
       <div>
         <a href={episode.url}>
