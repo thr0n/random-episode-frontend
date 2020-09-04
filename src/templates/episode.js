@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Header from '../components/header'
 import Container from '../components/container'
 import { chooseRandomEpisodeUrl } from '../common/util'
 import episodeStyles from './episode.module.css'
@@ -14,9 +13,7 @@ export default ({ data }) => {
 
   return (
     <Container>
-      <Header />
-      <p />
-      <div>
+      <div className={episodeStyles.episodeContainer}>
         <a href={episode.url}>
           <img
             className={episodeStyles.episodeImage}
