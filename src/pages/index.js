@@ -7,6 +7,7 @@ import { MoodImage } from '../components/moodImage'
 import tape from '../images/tape-large.jpeg'
 import { AboutSection } from '../components/aboutSection'
 import indexStyles from './index.module.scss'
+import { BackToTop } from '../components/backToTop'
 
 export default ({ data }) => {
   const { episodesByArtist, knownArtists } = data
@@ -38,6 +39,7 @@ export default ({ data }) => {
           <AboutSection />
         </MoodImage>
       </Container>
+      <BackToTop/>
     </div>
   )
 }
