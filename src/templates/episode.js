@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Header from '../components/header'
 import Container from '../components/container'
 import { chooseRandomEpisodeUrl } from '../common/util'
 import episodeStyles from './episode.module.css'
+import { Button } from '../components/button'
 
 export default ({ data }) => {
   const episode = data.dataJson
@@ -24,8 +24,12 @@ export default ({ data }) => {
           />
         </a>
         <div className={episodeStyles.buttonContainer}>
-          <Link to={'/'}>Zurück</Link>
-          <Link to={alternativeProposal}>Mehr von "{episode.artistName}"</Link>
+          <Button to={'/'}>
+            Zurück
+          </Button>
+          <Button to={alternativeProposal}>
+            Mehr von "{episode.artistName}"
+          </Button>
         </div>
       </div>
     </Container>
