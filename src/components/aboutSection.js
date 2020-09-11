@@ -23,7 +23,7 @@ export const AboutSection = () => (
     <p>
       Und so funktioniert's: Klicke entweder auf den "Überrasch mich"-Button und
       random episode schlägt dir aus allen bisher bekannten Hörspielen eine
-      Folge vor. Mit einem Klick auf die entsprechende Hörpspiel-Kachel, kannst
+      Folge vor. Mit einem Klick auf die entsprechende Hörspiel-Kachel, kannst
       du dir aber auch direkt eine Folge deiner Lieblingsreihe vorschlagen
       lassen. Und sollte dir der Vorschlag nicht gefallen, kannst du dir direkt
       eine andere Folge aus der selben Reihe vorschlagen lassen. Wenn dir etwas

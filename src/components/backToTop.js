@@ -39,9 +39,6 @@ export class BackToTop extends React.Component {
   render() {
     const { is_visible } = this.state
     const visibleContainer = is_visible ? backToTopStyles.visible : null
-
-    console.log(`${backToTopStyles.container} ${visibleContainer}`)
-
     return (
       <div className={`${backToTopStyles.container} ${visibleContainer}`}>
         {is_visible && (
