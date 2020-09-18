@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import backToTopStyles from './backToTop.module.scss'
 import { FaArrowUp } from 'react-icons/fa'
 
@@ -42,9 +43,7 @@ export class BackToTop extends React.Component {
     return (
       <div className={`${backToTopStyles.container} ${visibleContainer}`}>
         {is_visible && (
-          <div onClick={() => this.scrollToTop()}>
-            <FaArrowUp/>
-          </div>
+          <Link to="#top"><FaArrowUp/></Link>
         )}
       </div>
     )

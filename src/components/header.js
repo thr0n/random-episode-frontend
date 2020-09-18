@@ -22,7 +22,7 @@ export default () => {
         <img src={tapes} />
       </div>
       <div className={headerStyles.headerContainer}>
-        <Link to="/">
+        <Link to="/" id='#top'>
           <h1>{data.site.siteMetadata.title}</h1>
         </Link>
         <Navigation />
