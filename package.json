@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:netlify": "node fetch-episodes.js && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
@@ -15,6 +16,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
+    "firebase-admin": "^9.2.0",
     "gatsby": "^2.20.12",
     "gatsby-plugin-manifest": "^2.4.11",
     "gatsby-plugin-react-helmet": "^3.3.4",
