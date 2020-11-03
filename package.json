@@ -16,6 +16,7 @@
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
+    "date-fns": "^2.16.1",
     "firebase-admin": "^9.2.0",
     "gatsby": "^2.24.84",
     "gatsby-plugin-manifest": "^2.4.11",

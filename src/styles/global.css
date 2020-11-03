@@ -1,12 +1,16 @@
 html {
     color: black;
     background-color: #bebebe;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 body {
     margin: 0px;
     padding: 0px;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 a {

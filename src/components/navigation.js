@@ -5,10 +5,10 @@ import navigationStyles from './navigation.module.scss'
 export default (props) => (
   <div className={navigationStyles.navContainer}>
     <div>
-      <Link to="#episoden">Episoden</Link>
+      <Link to="/neueste-episoden">Neueste Episoden</Link>
     </div>
     <div>
-      <Link to="#about">Über</Link>
+      <Link to="/#about">Über</Link>
     </div>
     <div>
       <Link to="/contact">Kontakt</Link>
