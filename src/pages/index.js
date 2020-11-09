@@ -19,7 +19,7 @@ export default ({ data }) => {
       </Helmet>
       <Container>
         <div className={indexStyles.episodeOverlay}>
-          <h2 id="episoden">Episoden</h2>
+          <h2 id="episoden">Zufallsepisode</h2>
           <p>
             Was sollen wir heute hören? Im Moment stehen{' '}
             <strong>{episodesByArtist.totalCount} Hörspiele</strong> von{' '}

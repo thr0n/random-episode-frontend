@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import Navigation from './navigation'
-import tapes from '../images/tapes.jpeg'
+import tapes from '../images/tapes.webp'
 import headerStyles from './header.module.scss'
 
 export default () => {

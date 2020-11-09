@@ -33,6 +33,7 @@ export default ({ data }) => {
     <Container>
       <div
         className={latestEpisodesStyles.episodeOverlay}>
+        <h2>Neueste Episoden</h2>
         {latestEpisodes.map((le) => (
           <div key={le.artist} className={latestEpisodesStyles.artistSection}>
             <h3>{le.artist}</h3>

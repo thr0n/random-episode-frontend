@@ -10,8 +10,5 @@ export default (props) => (
     <div>
       <Link to="/#about">Über</Link>
     </div>
-    <div>
-      <Link to="/contact">Kontakt</Link>
-    </div>
   </div>
 )
