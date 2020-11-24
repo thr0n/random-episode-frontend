@@ -17,12 +17,16 @@
 
 .artist-bar {
   position: absolute;
-  bottom: 4px;
+  bottom: 6px;
   left: 0px;
   font: bold 10px/16px Helvetica, Sans-Serif;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.7);
   padding: 2px;
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .spacer {
