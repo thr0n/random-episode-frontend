@@ -25,10 +25,6 @@ export default ({ data }) => {
     return { ...result, episodes: ordered.slice(0, 3) }
   })
 
-  latestEpisodes.forEach(elem => {
-    console.log(JSON.stringify(elem))
-  })
-
   return (
     <Container>
       <div

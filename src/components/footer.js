@@ -2,6 +2,7 @@ import React from 'react'
 import { FaGithub, FaHeart } from 'react-icons/fa'
 import footerStyles from './footer.module.css'
 import tapeIcon from '../images/re-icon.png'
+import { logout } from '../utils/auth'
 
 export const Footer = () => (
   <footer className={footerStyles.container}>
@@ -22,6 +23,14 @@ export const Footer = () => (
       >
         <FaGithub className={footerStyles.githubIcon} />
       </a>
+    </div>
+    <div>
+      <a href="#" onClick={e => {
+        logout();
+        e.preventDefault();
+        }}>
+          Logout
+        </a>
     </div>
   </footer>
 )

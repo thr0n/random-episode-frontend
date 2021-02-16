@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import navigationStyles from './navigation.module.scss'
 
-export default (props) => (
+export default () => (
   <div className={navigationStyles.navContainer}>
     <div>
       <Link to="/neueste-episoden">Neueste Episoden</Link>
