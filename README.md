@@ -19,13 +19,13 @@ episode generator!
 
 ## Auth0
 
-On February 17th, 2021 I added Auth0 to random-episode.
+On February 17th, 2021 I added Auth0 authentication to random-episode.
 I think this is a good idea since I do not want to be sued for using
-episode covers or episode titles to which I have no right.
+episode covers or episode titles to which I have no rights.
 So, from now on this is a "private" project, I'm very sorry! 🙁
 
 I made a small screen recording if you are curious how
-random-episode looks like:
+random-episode works and looks like:
 
 ![Showcase](./demo.gif)
 
