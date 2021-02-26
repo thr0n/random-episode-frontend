@@ -15,7 +15,7 @@ export const Footer = () => (
       Made with <FaHeart className={footerStyles.heart} /> in Hamburg.
     </div>
     <div className={footerStyles.githubBar}>
-      <span className="margin-right">Source code is available on</span>
+      <div className="margin-right">Source code is available on</div>
       <a
         href={'https://github.com/thr0n/random-episode-frontend'}
         target="_blank"

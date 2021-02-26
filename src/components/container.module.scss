@@ -2,4 +2,31 @@
   margin: 30px auto 30px auto;
   max-width: 600px;
   padding: 0px 5px 0px 5px;
+  min-height: 843px;
+}
+
+.welcome-page {
+  margin: 30px auto 30px auto;
+  max-width: 600px;
+  padding: 0px 5px 0px 5px;
+  background-color: whitesmoke;
+  padding: 12px;
+  width: 85%;
+  box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2);
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+.icon-bar {
+  text-align: center;
+  img {
+    width: 42px;
+  }
+}
+
+.login {
+  cursor: pointer;
+  text-decoration: underline;
 }
