@@ -14,8 +14,12 @@ to fall asleep 👻 😱
 So, there was only one way out: I had to develop my own random
 episode generator!
 
-> I will soon publish a blog article about the development of random-episode.
-> I will link it here, so you can learn more about it if you want.
+## Blog
+
+You can read about random-episode on 
+[my blog](https://thr0n.github.io/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify)
+or on my
+[dev.to](https://dev.to/thr0n/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify-11fm) page.
 
 ## Auth0
 

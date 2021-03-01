@@ -25,7 +25,11 @@ export default ({ children }) => {
             <a href="https://thr0n.github.io/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify">
               blog
             </a>{' '}
-            or dev.to (coming soon!).
+            or{' '}
+            <a href="https://dev.to/thr0n/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify-11fm">
+              dev.to
+            </a>
+            .
             <p>
               The source files are available on{' '}
               <a href="https://github.com/thr0n/random-episode-frontend">
