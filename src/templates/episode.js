@@ -1,11 +1,11 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
-import Container from '../components/container'
+import { graphql } from 'gatsby'
+import { Container } from '../components/container'
 import { chooseRandomEpisodeUrl } from '../common/util'
-import episodeStyles from './episode.module.css'
 import { Button } from '../components/button'
+import * as episodeStyles from './episode.module.css'
 
-export default ({ data }) => {
+const Episode = ({ data }) => {
   const episode = data.dataJson
   const filteredEpisodes = data.allDataJson.edges.filter(
     (edge) => edge.node.artistId === episode.artistId
@@ -24,9 +24,7 @@ export default ({ data }) => {
           />
         </a>
         <div className={episodeStyles.buttonContainer}>
-          <Button to={'/'}>
-            Zurück
-          </Button>
+          <Button to={'/'}>Zurück</Button>
           <Button to={alternativeProposal}>
             Mehr von "{episode.artistName}"
           </Button>
@@ -37,7 +35,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     allDataJson {
       totalCount
       edges {
@@ -63,3 +61,5 @@ export const query = graphql`
     }
   }
 `
+
+export default Episode

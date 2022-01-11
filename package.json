@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "random-episode",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
+  "description": "",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -13,34 +13,34 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "prettier": "npx prettier --write ./src/*/*.js"
   },
   "dependencies": {
-    "auth0-js": "^9.14.3",
-    "date-fns": "^2.16.1",
-    "firebase-admin": "^9.2.0",
-    "gatsby": "^2.32.3",
-    "gatsby-plugin-manifest": "^2.4.11",
-    "gatsby-plugin-react-helmet": "^3.3.4",
-    "gatsby-plugin-sass": "^2.3.4",
-    "gatsby-source-filesystem": "^2.2.2",
-    "gatsby-transformer-json": "^2.3.1",
-    "node-sass": "^4.14.1",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "auth0-js": "^9.18.0",
+    "date-fns": "^2.28.0",
+    "firebase-admin": "^10.0.1",
+    "gatsby": "^4.4.0",
+    "gatsby-plugin-manifest": "^4.4.0",
+    "gatsby-plugin-react-helmet": "^5.4.0",
+    "gatsby-plugin-sass": "^5.4.0",
+    "gatsby-source-filesystem": "^4.4.0",
+    "gatsby-transformer-json": "^4.4.0",
+    "node-sass": "^7.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-icons": "^3.10.0",
+    "react-icons": "^4.3.1",
     "smooth-scroll": "^16.1.3"
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0",
-    "prettier": "^1.19.1"
+    "gh-pages": "^3.2.3",
+    "prettier": "^2.5.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/thr0n/random-episode-frontend"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/thr0n/random-episode-frontend/issues"
   }
 }

@@ -2,26 +2,26 @@ import React from 'react'
 import { Link } from 'gatsby'
 import { FaRandom } from 'react-icons/fa'
 import { chooseRandomEpisodeUrl } from '../common/util'
-import tileStyles from './artistTile.module.scss'
+import * as artistTileStyles from './artistTile.module.scss'
 
 export const ArtistTile = (props) => (
-  <div className={tileStyles.container}>
+  <div className={artistTileStyles.container}>
     <Link to={chooseRandomEpisodeUrl(props.episodes)}>
       {props.artistImage ? (
         <img
-          className={tileStyles.tileButton}
+          className={artistTileStyles.tileButton}
           src={props.artistImage.url}
           alt={props.artistName}
         />
       ) : (
         <div
-          className={`${tileStyles.randomButtonContainer} ${tileStyles.tileButton}`}
+          className={`${artistTileStyles.randomButtonContainer} ${artistTileStyles.tileButton}`}
         >
-          <FaRandom className={tileStyles.randomButton} />
+          <FaRandom className={artistTileStyles.randomButton} />
         </div>
       )}
-      <span className={tileStyles.artistBar}>
-        <span className={tileStyles.spacer}>{props.artistName}</span>
+      <span className={artistTileStyles.artistBar}>
+        <span className={artistTileStyles.spacer}>{props.artistName}</span>
       </span>
     </Link>
   </div>

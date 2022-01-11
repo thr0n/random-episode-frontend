@@ -1,5 +1,5 @@
 import React from 'react'
-import aboutSectionStyles from './aboutSection.module.css'
+import * as aboutSectionStyles from './aboutSection.module.scss'
 
 export const AboutSection = () => (
   <div className={aboutSectionStyles.container}>

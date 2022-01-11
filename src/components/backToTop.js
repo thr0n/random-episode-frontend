@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import backToTopStyles from './backToTop.module.scss'
 import { FaArrowUp } from 'react-icons/fa'
+import * as backToTopStyles from './backToTop.module.scss'
 
 export class BackToTop extends React.Component {
   constructor(props) {
@@ -43,7 +43,9 @@ export class BackToTop extends React.Component {
     return (
       <div className={`${backToTopStyles.container} ${visibleContainer}`}>
         {is_visible && (
-          <Link to="#top"><FaArrowUp/></Link>
+          <Link to="#top">
+            <FaArrowUp />
+          </Link>
         )}
       </div>
     )
