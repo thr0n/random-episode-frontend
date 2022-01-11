@@ -1,27 +1,19 @@
-@import "../styles/variables";
+@import '../styles/variables';
 
 .wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
 }
 
 @media screen and (min-width: $min-width) {
-    .wrapper {
-        grid-template-columns: 1fr 1fr;
-    }
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-@media screen and (min-width: $tablet-width){
-    .wrapper {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-.artist-tile {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    line-height: 1;
-    transition: all .3s ease;
+@media screen and (min-width: $tablet-width) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
