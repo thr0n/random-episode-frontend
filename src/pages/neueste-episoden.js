@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Container from '../components/container'
+import { Container } from '../components/container'
 import { compareDesc } from 'date-fns'
-import latestEpisodesStyles from './latestEpisodes.module.scss'
+import * as latestEpisodesStyles from './latestEpisodes.module.scss'
 
-export default ({ data }) => {
+const LatestEpisodes = ({ data }) => {
   const { episodesByArtist } = data
 
   const latestEpisodes = episodesByArtist.group.map((artistGroup) => {
@@ -27,8 +27,7 @@ export default ({ data }) => {
 
   return (
     <Container>
-      <div
-        className={latestEpisodesStyles.episodeOverlay}>
+      <div className={latestEpisodesStyles.episodeOverlay}>
         <h2>Neueste Episoden</h2>
         {latestEpisodes.map((le) => (
           <div key={le.artist} className={latestEpisodesStyles.artistSection}>
@@ -39,11 +38,9 @@ export default ({ data }) => {
                 className={latestEpisodesStyles.episodeList}
               >
                 <a href={item.node.url}>
-                  <img src={item.node.image_small?.url} />
+                  <img src={item.node.image_small?.url} alt="Album cover" />
                 </a>
-                <div className={latestEpisodesStyles.episodeTitle}>
-                  {item.node.title}
-                </div>
+                <div className={''}>{item.node.title}</div>
               </div>
             ))}
           </div>
@@ -82,3 +79,5 @@ export const query = graphql`
     }
   }
 `
+
+export default LatestEpisodes

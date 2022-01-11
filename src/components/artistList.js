@@ -1,10 +1,10 @@
 import React from 'react'
 import { ArtistTile } from './artistTile'
-import listStyles from './artistList.module.scss'
+import * as artistListStyles from './artistList.module.scss'
 
 export const ArtistList = (props) => (
-  <div className={listStyles.wrapper}>
-    <div className={listStyles.artistTile}>
+  <div className={artistListStyles.wrapper}>
+    <div className={artistListStyles.wrapper}>
       <ArtistTile
         artistName="Überrasch mich..."
         episodes={props.episodesByArtist.group.map((e) => e.edges).flat()}
@@ -12,7 +12,7 @@ export const ArtistList = (props) => (
     </div>
     {props.knownArtists.edges.map((artist, index) => {
       return (
-        <div key={index} className={listStyles.artistTile}>
+        <div key={index} className={artistListStyles.artistTile}>
           <ArtistTile
             artistId={artist.node.id}
             artistName={artist.node.name}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import navigationStyles from './navigation.module.scss'
+import * as navigationStyles from './navigation.module.scss'
 
-export default () => (
+export const Navigation = () => (
   <div className={navigationStyles.navContainer}>
     <div>
       <Link to="/neueste-episoden">Neueste Episoden</Link>

@@ -23,7 +23,7 @@ let user = {}
 
 export const isAuthenticated = () => {
   if (!isBrowser) {
-    return;
+    return
   }
   return localStorage.getItem('isLoggedIn') === 'true'
 }
@@ -37,24 +37,26 @@ export const login = () => {
   console.log('done!')
 }
 
-const setSession = (cb = () => {}) => (err, authResult) => {
-  if (err) {
-    navigate('/')
-    cb()
-    return
-  }
+const setSession =
+  (cb = () => {}) =>
+  (err, authResult) => {
+    if (err) {
+      navigate('/')
+      cb()
+      return
+    }
 
-  if (authResult && authResult.accessToken && authResult.idToken) {
-    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
-    tokens.accessToken = authResult.accessToken
-    tokens.idToken = authResult.idToken
-    tokens.expiresAt = expiresAt
-    user = authResult.idTokenPayload
-    localStorage.setItem('isLoggedIn', true)
-    navigate('/')
-    cb()
+    if (authResult && authResult.accessToken && authResult.idToken) {
+      let expiresAt = authResult.expiresIn * 1000 + new Date().getTime()
+      tokens.accessToken = authResult.accessToken
+      tokens.idToken = authResult.idToken
+      tokens.expiresAt = expiresAt
+      user = authResult.idTokenPayload
+      localStorage.setItem('isLoggedIn', true)
+      navigate('/')
+      cb()
+    }
   }
-}
 
 export const handleAuthentication = () => {
   if (!isBrowser) {

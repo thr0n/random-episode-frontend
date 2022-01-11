@@ -1,15 +1,15 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import { Container } from '../components/container'
 import { Helmet } from 'react-helmet'
-import Container from '../components/container'
 import { ArtistList } from '../components/artistList'
 import { MoodImage } from '../components/moodImage'
 import tape from '../images/tape-large.jpeg'
 import { AboutSection } from '../components/aboutSection'
-import indexStyles from './index.module.scss'
-import { BackToTop } from '../components/backToTop'
+// import { BackToTop } from '../components/backToTop'
+import * as indexStyles from './index.module.scss'
 
-export default ({ data }) => {
+const Index = ({ data }) => {
   const { episodesByArtist, knownArtists } = data
   return (
     <div>
@@ -33,13 +33,11 @@ export default ({ data }) => {
             episodesByArtist={episodesByArtist}
             knownArtists={knownArtists}
           />
-          <p />
         </div>
         <MoodImage image={tape}>
           <AboutSection />
         </MoodImage>
       </Container>
-      <BackToTop/>
     </div>
   )
 }
@@ -80,3 +78,5 @@ export const query = graphql`
     }
   }
 `
+
+export default Index
