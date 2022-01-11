@@ -14,7 +14,7 @@ module.exports = {
         theme_color: `#a2466c`,
         display: `standalone`,
         icon: `src/images/tape.png`
-      },
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,

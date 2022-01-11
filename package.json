@@ -13,7 +13,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "prettier": "npx prettier --write ./src/*/*.js"
+    "prettier": "prettier --write '**/*.{ts,tsx,js,css,scss,html}'"
   },
   "dependencies": {
     "auth0-js": "^9.18.0",
