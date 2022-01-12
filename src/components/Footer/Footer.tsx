@@ -1,14 +1,13 @@
 import React from 'react'
 import { FaGithub, FaHeart } from 'react-icons/fa'
-import tapeIcon from '../images/re-icon.png'
-import { logout } from '../utils/auth'
+import tapeIcon from '../../images/re-icon.png'
 import * as footerStyles from './footer.module.scss'
 
 export const Footer = () => (
   <footer className={footerStyles.container}>
     <img
       className={footerStyles.tapeImage}
-      src={tapeIcon}
+      src={tapeIcon.toString()}
       alt="random-episode icon"
     />
     <div>
@@ -22,17 +21,6 @@ export const Footer = () => (
         rel="noopener noreferrer"
       >
         <FaGithub className={footerStyles.githubIcon} />
-      </a>
-    </div>
-    <div>
-      <a
-        href="/#"
-        onClick={(e) => {
-          logout()
-          e.preventDefault()
-        }}
-      >
-        Logout
       </a>
     </div>
   </footer>

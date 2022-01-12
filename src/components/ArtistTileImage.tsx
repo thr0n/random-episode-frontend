@@ -3,8 +3,8 @@ import { FaRandom } from 'react-icons/fa'
 import * as artistTileImageStyles from './artistTileImage.module.scss'
 
 interface ArtistTileImageProps {
-  imgSrc: string
-  artistName: string
+  imgSrc: string | undefined
+  artistName?: string
 }
 
 export const ArtistTileImage = (props: ArtistTileImageProps) => (
