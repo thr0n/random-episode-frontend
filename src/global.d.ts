@@ -11,3 +11,8 @@ declare module '*.png' {
   const content: { [className: string]: string }
   export = content
 }
+
+declare module '*.webp' {
+  const content: { [className: string]: string }
+  export = content
+}

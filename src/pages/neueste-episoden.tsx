@@ -2,28 +2,46 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Container } from '../components/container'
 import { compareDesc } from 'date-fns'
+import { EpisodeGql } from '../types/Episode'
+
 import * as latestEpisodesStyles from './latestEpisodes.module.scss'
 
-const LatestEpisodes = ({ data }) => {
+interface ArtistGroup {
+  totalCount: number
+  artistName: string
+  edges: EpisodeGql[]
+}
+
+interface LatestEpisodesProps {
+  data: {
+    episodesByArtist: {
+      group: ArtistGroup[]
+    }
+  }
+}
+
+const LatestEpisodes = ({ data }: LatestEpisodesProps) => {
   const { episodesByArtist } = data
 
-  const latestEpisodes = episodesByArtist.group.map((artistGroup) => {
-    const result = {
-      artist: artistGroup.artistName,
-      episodes: []
+  const latestEpisodes = episodesByArtist.group.map(
+    (artistGroup: ArtistGroup) => {
+      const result = {
+        artist: artistGroup.artistName,
+        episodes: []
+      }
+
+      const dated = artistGroup.edges.map((edge) => {
+        edge.node.released = new Date(edge.node.released)
+        return edge
+      })
+
+      const ordered = dated.sort((a, b) =>
+        compareDesc(a.node.released, b.node.released)
+      )
+
+      return { ...result, episodes: ordered.slice(0, 3) }
     }
-
-    const dated = artistGroup.edges.map((edge) => {
-      edge.node.released = new Date(edge.node.released)
-      return edge
-    })
-
-    const ordered = dated.sort((a, b) =>
-      compareDesc(a.node.released, b.node.released)
-    )
-
-    return { ...result, episodes: ordered.slice(0, 3) }
-  })
+  )
 
   return (
     <Container>
@@ -32,7 +50,7 @@ const LatestEpisodes = ({ data }) => {
         {latestEpisodes.map((le) => (
           <div key={le.artist} className={latestEpisodesStyles.artistSection}>
             <h3>{le.artist}</h3>
-            {le.episodes.map((item) => (
+            {le.episodes.map((item: EpisodeGql) => (
               <div
                 key={item.node.id}
                 className={latestEpisodesStyles.episodeList}

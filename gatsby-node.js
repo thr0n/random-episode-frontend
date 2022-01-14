@@ -31,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allDataJson.edges.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/episode.js`),
+      component: path.resolve(`./src/templates/Episode.tsx`),
       context: {
         // Data passed to context is available
         // in page queries as GraphQL variables.
@@ -39,19 +39,4 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     })
   })
-}
-
-exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-  if (stage === 'build-html') {
-    actions.setWebpackConfig({
-      module: {
-        rules: [
-          {
-            test: /auth0-js/,
-            use: loaders.null()
-          }
-        ]
-      }
-    })
-  }
 }

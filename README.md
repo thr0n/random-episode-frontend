@@ -31,7 +31,7 @@ So, from now on this is a "private" project, I'm very sorry! 🙁
 I made a small screen recording if you are curious how
 random-episode works and looks like:
 
-![Showcase](./demo.gif)
+![Showcase](./docs/demo.gif)
 
 ## Unplash credits
 

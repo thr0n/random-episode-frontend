@@ -1,14 +1,23 @@
-import React from 'react'
 import { graphql } from 'gatsby'
+import React from 'react'
+import { Button } from '../components/Buttons/Button'
 import { Container } from '../components/container'
-import { chooseRandomEpisodeUrl } from '../common/util'
-import { Button } from '../components/button'
-import * as episodeStyles from './episode.module.css'
+import { EpisodeSlug } from 'src/types/Episode'
+import {
+  EpisodeSlugsGql,
+  DetailedEpisodeGql
+} from 'src/types/external/GraphqlTypes'
+import { mapEpisodeSlugs } from '../mapper/episodeMapper'
+import { chooseRandomEpisodeUrl } from '../utils/randomEpisode'
+import * as episodeStyles from './episode.module.scss'
 
-const Episode = ({ data }) => {
-  const episode = data.dataJson
-  const filteredEpisodes = data.allDataJson.edges.filter(
-    (edge) => edge.node.artistId === episode.artistId
+const Episode = ({ data }: EpisodeProps) => {
+  const episode = data.detailedEpisode
+
+  const episodeSlug: EpisodeSlug[] = mapEpisodeSlugs(data.allEpisodes)
+
+  const filteredEpisodes = episodeSlug.filter(
+    (edge) => edge.artistId === episode.artistId
   )
   const alternativeProposal = chooseRandomEpisodeUrl(filteredEpisodes)
 
@@ -18,6 +27,9 @@ const Episode = ({ data }) => {
       <div>
         <a href={episode.url}>
           <img
+            height={episode.image.height}
+            width={episode.image.width}
+            loading='lazy'
             className={episodeStyles.episodeImage}
             src={episode.image.url}
             alt={episode.title}
@@ -34,9 +46,16 @@ const Episode = ({ data }) => {
   )
 }
 
+interface EpisodeProps {
+  data: {
+    allEpisodes: EpisodeSlugsGql
+    detailedEpisode: DetailedEpisodeGql
+  }
+}
+
 export const query = graphql`
   query ($slug: String!) {
-    allDataJson {
+    allEpisodes: allDataJson {
       totalCount
       edges {
         node {
@@ -47,7 +66,7 @@ export const query = graphql`
         }
       }
     }
-    dataJson(fields: { slug: { eq: $slug } }) {
+    detailedEpisode: dataJson(fields: { slug: { eq: $slug } }) {
       artistId
       artistName
       episodeId
