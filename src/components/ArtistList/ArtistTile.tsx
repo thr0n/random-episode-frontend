@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { chooseRandomEpisodeUrl } from '../common/util'
+import { chooseRandomEpisodeUrl } from '../../utils/randomEpisode'
 import { ArtistTileImage } from './ArtistTileImage'
+import { Episode, EpisodeSlug } from '../../types/Episode'
 import * as artistTileStyles from './artistTile.module.scss'
-import { Episode } from '../types/Episode'
 
 interface ArtistTileProps {
   episodes: Episode[]
@@ -14,15 +14,24 @@ interface ArtistTileProps {
 }
 
 export const ArtistTile = (props: ArtistTileProps) => {
+  const slugs: EpisodeSlug[] = props.episodes.flatMap((episode) => {
+    return {
+      artistId: episode.artistId,
+      slug: episode.slug
+    }
+  })
   return (
     <div className={artistTileStyles.artistTileLabel}>
       <div className={artistTileStyles.container}>
-        <Link to={chooseRandomEpisodeUrl(props.episodes)}>
+        <Link to={chooseRandomEpisodeUrl(slugs)}>
           <ArtistTileImage
             imgSrc={props.artistImage?.url}
-            artistName={props.artistName} />
+            artistName={props.artistName}
+          />
           <div className={artistTileStyles.artistBar}>
-            <span className={artistTileStyles.spacer}>{props.artistName || 'Überrasch mich...'}</span>
+            <span className={artistTileStyles.spacer}>
+              {props.artistName || 'Überrasch mich...'}
+            </span>
           </div>
         </Link>
       </div>

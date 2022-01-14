@@ -2,9 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as moodImageStyles from './moodimage.module.scss'
 
-export const MoodImage = (props) => (
+interface MoodImageProps {
+  children: React.ReactNode
+  image: string // TODO find better type!
+}
+
+export const MoodImage = (props: MoodImageProps) => (
   <div className={moodImageStyles.moodImageContainer}>
     <img
+      loading='lazy'
       src={props.image}
       className={moodImageStyles.moodImage}
       alt="Mood illustration"

@@ -12,7 +12,10 @@
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false
+    "removeComments": false,
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
   "include": ["./src/**/*"]
 }

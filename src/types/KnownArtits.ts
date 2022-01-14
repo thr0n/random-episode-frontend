@@ -1,11 +1,12 @@
-export interface KnownArtist {
-  node: {
-    id: string
-    name: string
-    image: {
-      height: number
-      url: string
-      width: number
-    }
-  }
+import { ImageGql } from './external/GraphqlTypes'
+
+interface KnownArtist {
+  id: string
+  name: string
+  image: ImageGql
+}
+
+export interface KnownArtists {
+  totalCount: number
+  artists: KnownArtist[]
 }
