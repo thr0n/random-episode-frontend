@@ -1,5 +1,5 @@
-import { KnownArtists } from 'src/components/RandomEpisodeApp'
 import { KnownArtistsGql } from 'src/types/external/GraphqlTypes'
+import { KnownArtists } from 'src/types/KnownArtits'
 
 export const mapArtists = (knownArtists: KnownArtistsGql): KnownArtists => {
   return {

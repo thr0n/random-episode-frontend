@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { ArtistTileImage } from '../ArtistTileImage'
 
 describe('ArtistTileImage', () => {
@@ -22,9 +22,17 @@ describe('ArtistTileImage', () => {
   })
 
   // react-testing-library
-  const Testee = () => <ArtistTileImage imgSrc={undefined} />
   test('renders correctly (even using react-testing-library)', () => {
-    const { container } = render(<Testee />)
-    expect(container).toMatchSnapshot()
+    render(<ArtistTileImage imgSrc={undefined} />)
+
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
+    expect(screen.queryByTitle('random-icon')).toBeInTheDocument()
+  })
+
+  test('renders correctly (even using react-testing-library)', () => {
+    render(<ArtistTileImage imgSrc={'https://fake-image.org/my-image.png'} />)
+
+    expect(screen.queryByRole('img')).toBeInTheDocument()
+    expect(screen.queryByTitle('random-icon')).not.toBeInTheDocument()
   })
 })

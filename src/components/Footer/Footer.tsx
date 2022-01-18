@@ -11,7 +11,8 @@ export const Footer = () => (
       alt="random-episode icon"
     />
     <div>
-      Made with <FaHeart className={footerStyles.heart} /> in Hamburg.
+      Made with <FaHeart className={footerStyles.heart} id="heart-icon" /> in
+      Hamburg.
     </div>
     <div className={footerStyles.githubBar}>
       <div className="margin-right">Source code is available on</div>

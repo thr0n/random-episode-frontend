@@ -29,7 +29,6 @@ const Episode = ({ data }: EpisodeProps) => {
           <img
             height={episode.image.height}
             width={episode.image.width}
-            loading='lazy'
             className={episodeStyles.episodeImage}
             src={episode.image.url}
             alt={episode.title}

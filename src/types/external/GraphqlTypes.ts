@@ -1,3 +1,5 @@
+import { GatsbyImageProps, IGatsbyImageData } from 'gatsby-plugin-image'
+
 export interface ImageGql {
   height: number
   url: string
@@ -18,13 +20,11 @@ export interface EpisodeGql {
 
 export interface EpisodesByArtistGql {
   totalCount: number
-  group: [
-    {
-      totalCount: number
-      artistName: string
-      edges: [EpisodeGql]
-    }
-  ]
+  group: {
+    totalCount: number
+    artistName: string
+    edges: EpisodeGql[]
+  }[]
 }
 
 export interface EpisodeSlugsGql {
@@ -50,13 +50,26 @@ export interface DetailedEpisodeGql {
 
 export interface KnownArtistsGql {
   totalCount: number
-  edges: [
-    {
-      node: {
-        id: string
-        name: string
-        image: ImageGql
-      }
+  edges: {
+    node: {
+      id: string
+      name: string
+      image: ImageGql
     }
-  ]
+  }[]
+}
+
+export interface GatsbyImageGraphql {
+  allFile: {
+    edges: GatsbyImageEdgeGraphql[]
+  }
+}
+
+export interface GatsbyImageEdgeGraphql {
+  node: {
+    name: string
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
+  }
 }
