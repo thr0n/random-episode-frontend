@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import * as buttonStyles from './button.module.scss'
 
 interface ButtonProps {
-  to: string,
+  to: string
   children: React.ReactNode
 }
 

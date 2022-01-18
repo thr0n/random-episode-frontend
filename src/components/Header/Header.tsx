@@ -16,10 +16,11 @@ export const Header = () => {
       }
     `
   )
+
   return (
     <div className={headerStyles.noTopDistance}>
       <div className={headerStyles.headerImage}>
-        <img src={tapes} alt="An audio tape collection" />
+        <img src={String(tapes)} alt="An audio tape collection" />
       </div>
       <div className={headerStyles.headerContainer}>
         <Link to="/" id="#top">

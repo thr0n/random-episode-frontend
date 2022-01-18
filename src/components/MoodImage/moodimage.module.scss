@@ -6,6 +6,10 @@
   flex-direction: column;
   position: relative;
   margin-top: 40px;
+
+  &-no-image {
+    margin-top: 80px;
+  }
 }
 
 .mood-image {
@@ -26,4 +30,5 @@
   padding: 0px 12px 0px 12px;
   width: 85%;
   box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }

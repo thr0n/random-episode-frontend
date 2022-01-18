@@ -2,7 +2,6 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { EpisodesByArtist } from 'src/types/Episode'
 import { KnownArtists } from 'src/types/KnownArtits'
-// import { render } from '@testing-library/react'
 import { ArtistList } from '../ArtistList'
 
 describe('ArtistList', () => {

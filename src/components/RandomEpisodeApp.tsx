@@ -1,7 +1,6 @@
 import React from 'react'
 import { EpisodesByArtist } from 'src/types/Episode'
 import { KnownArtists } from 'src/types/KnownArtits'
-import tape from '../images/tape-large.jpeg'
 import { AboutSection } from './AboutSection/AboutSection'
 import { ArtistList } from './ArtistList/ArtistList'
 import { Container } from './container'
@@ -35,7 +34,7 @@ export const RandomEpisodeApp = ({
           knownArtists={knownArtists}
         />
       </div>
-      <MoodImage image={tape.toString()}>
+      <MoodImage image="tape-sized">
         <AboutSection />
       </MoodImage>
     </Container>
