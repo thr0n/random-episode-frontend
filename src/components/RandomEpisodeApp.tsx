@@ -3,7 +3,7 @@ import { EpisodesByArtist } from 'src/types/Episode'
 import { KnownArtists } from 'src/types/KnownArtits'
 import { AboutSection } from './AboutSection/AboutSection'
 import { ArtistList } from './ArtistList/ArtistList'
-import { Container } from './container'
+import { Container } from './Container'
 import { MoodImage } from './MoodImage/MoodImage'
 import * as indexStyles from './randomEpisode.module.scss'
 
