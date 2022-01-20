@@ -22,7 +22,11 @@ const Index = ({ data }: Props) => {
 
   return (
     <>
-      <Helmet>
+      <Helmet
+        htmlAttributes={{
+          lang: 'de'
+        }}
+      >
         <meta charSet="utf-8" />
         <title>random episode - Was hören wir heute?</title>
       </Helmet>

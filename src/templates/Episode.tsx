@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 import React from 'react'
 import { Button } from '../components/Buttons/Button'
-import { Container } from '../components/container'
+import { Container } from '../components/Container'
 import { EpisodeSlug } from 'src/types/Episode'
 import {
   EpisodeSlugsGql,
