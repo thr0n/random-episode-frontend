@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Container } from '../components/container'
+import { Container } from '../components/Container'
 import { compareDesc } from 'date-fns'
 import { EpisodeGql } from '../types/Episode'
 
@@ -20,6 +20,7 @@ interface LatestEpisodesProps {
   }
 }
 
+// TODO check EpisodeGql type
 const LatestEpisodes = ({ data }: LatestEpisodesProps) => {
   const { episodesByArtist } = data
 
