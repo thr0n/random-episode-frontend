@@ -50,8 +50,8 @@ jobs:
   build-artifact:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-node@v2
     - name: Create env file
+      uses: actions/setup-node@v2
       with:
         node-version: '16'
         cache: 'npm'
