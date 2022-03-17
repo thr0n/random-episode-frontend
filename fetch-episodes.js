@@ -1,18 +1,68 @@
 const fs = require('fs')
+const dotenv = require('dotenv')
+const AWS = require('aws-sdk')
 const dataDir = './src/data/'
 const artistDir = './src/data/artists/'
 
-const admin = require('firebase-admin')
-admin.initializeApp({
-  credential: admin.credential.cert({
-    project_id: process.env.GCP_PROJECT_ID,
-    private_key: process.env.GCP_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.GCP_CLIENT_EMAIL
-  }),
-  databaseURL: process.env.GCP_DATABASE_URL
+dotenv.config()
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET,
+  region: process.env.AWS_REGION
 })
 
-const db = admin.firestore()
+let docClient = new AWS.DynamoDB.DocumentClient()
+
+const fetchEpisodesFromDatabase = () => {
+  return new Promise(async (resolve) => {
+    const params = {
+      TableName: 'Episode'
+    }
+    docClient.scan(params, (err, data) => {
+      if (err) {
+        console.error('Unable to query. Error:', JSON.stringify(err, null, 2))
+      } else {
+        console.log('Episode query succeeded.')
+        data.Items.forEach((item) => {
+          fs.writeFile(
+            dataDir + item.id + '.json',
+            JSON.stringify(item),
+            (err) => {
+              if (err) console.log(err)
+            }
+          )
+        })
+      }
+    })
+    resolve()
+  })
+}
+
+const fetchArtistsFromDatabase = () => {
+  return new Promise(async (resolve) => {
+    const params = {
+      TableName: 'Artist'
+    }
+    docClient.scan(params, (err, data) => {
+      if (err) {
+        console.error('Unable to query. Error:', JSON.stringify(err, null, 2))
+      } else {
+        console.log('Artist query succeeded.')
+        data.Items.forEach((item) => {
+          fs.writeFile(
+            artistDir + item.id + '.json',
+            JSON.stringify(item),
+            (err) => {
+              if (err) console.log(err)
+            }
+          )
+        })
+      }
+    })
+    resolve()
+  })
+}
 
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir)
@@ -26,36 +76,3 @@ if (!fs.existsSync(artistDir)) {
   await fetchArtistsFromDatabase()
 })()
 
-function fetchEpisodesFromDatabase() {
-  return new Promise(async (resolve) => {
-    const snapshot = await db.collection('episode').get()
-    snapshot.forEach((doc) => {
-      fs.writeFile(
-        dataDir + doc.id + '.json',
-        JSON.stringify(doc.data()),
-        (err) => {
-          if (err) console.log(err)
-        }
-      )
-    })
-    console.log(snapshot.size + ' episodes saved.')
-    resolve()
-  })
-}
-
-function fetchArtistsFromDatabase() {
-  return new Promise(async (resolve) => {
-    const snapshot = await db.collection('artist').get()
-    snapshot.forEach((doc) => {
-      fs.writeFile(
-        artistDir + doc.id + '.json',
-        JSON.stringify(doc.data()),
-        (err) => {
-          if (err) console.log(err)
-        }
-      )
-    })
-    console.log(snapshot.size + ' artists saved.')
-    resolve()
-  })
-}

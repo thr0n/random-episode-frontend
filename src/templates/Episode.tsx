@@ -68,7 +68,7 @@ export const query = graphql`
     detailedEpisode: dataJson(fields: { slug: { eq: $slug } }) {
       artistId
       artistName
-      episodeId
+      id
       title
       url
       image {
