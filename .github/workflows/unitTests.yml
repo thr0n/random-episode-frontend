@@ -23,12 +23,8 @@ jobs:
       env:
         cache-name: cache-node
       with:
-        path: ~/.npm
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+        path: ./node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
     - run: npm ci
     - run: npm test
     - name: Tests ✅
