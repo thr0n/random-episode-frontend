@@ -87,11 +87,11 @@ jobs:
     - name: Build app
       run: npm run build:aws
     - name: Archive production artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: random-episode
-          path: |
-            public
+      uses: actions/upload-artifact@v3
+      with:
+        name: random-episode
+        path: |
+          public
 
   deploy:
     needs: build-artifact
