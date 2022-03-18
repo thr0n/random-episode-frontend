@@ -101,8 +101,6 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: random-episode
-    - name: Test
-       run: echo "Skipping!"
     #- uses: jakejarvis/s3-sync-action@master
     #  with:
     #    args: --dryrun
