@@ -30,6 +30,8 @@ jobs:
     needs: prepare-environment
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Load node_modules
       uses: actions/cache@v2
       with:
