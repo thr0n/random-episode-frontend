@@ -9,29 +9,32 @@ on:
     branches: [ master ]
 
 jobs:
-  unit-test:
+  prepare-environment:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Test using Node.js
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup node
       uses: actions/setup-node@v2
-      env:
-        cache-name: cache-node-modules
+    - name: Cache node_modules
+      uses: actions/cache@v2
       with:
         path: node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        key: node_modules_${{ hashFiles('package-lock.json') }}
+        #key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
-    - name: Setup cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node
-      with:
-        path: ./node_modules
-        key: modules-${{ hashFiles('package-lock.json') }}
+          node_modules-
     - run: npm ci
+
+  unit-test:
+    needs: prepare-environment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Load node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules_${{ hashFiles('package-lock.json') }} 
     - run: npm test
     - name: Tests ✅
       if: ${{ success() }}
