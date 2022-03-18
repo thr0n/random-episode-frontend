@@ -21,7 +21,6 @@ jobs:
       with:
         path: node_modules
         key: node_modules_${{ hashFiles('package-lock.json') }}
-        #key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           node_modules-
     - run: npm ci
@@ -85,10 +84,33 @@ jobs:
         echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
         echo AWS_ACCESS_KEY_SECRET=${{ secrets.AWS_ACCESS_KEY_SECRET }} >> .env
         echo AWS_REGION=${{ secrets.AWS_REGION }} >> .env
-    - name: Install Dependencies
-      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-      run: npm ci
     - name: Build app
       run: npm run build:aws
+    - name: Archive production artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: random-episode
+          path: |
+            public
+
+  deploy:
+    needs: build-artifact
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download production artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: random-episode
+    - name: Test
+       run: echo "Skipping!"
+    #- uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --dryrun
+    #  env:
+    #    AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+    #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #    AWS_REGION: ${{ secrets.AWS_REGION }}
+    #    SOURCE_DIR: 'public'
 
 
