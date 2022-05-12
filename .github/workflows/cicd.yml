@@ -1,0 +1,114 @@
+# inspired by: https://joelhooks.com/jest-and-github-actions
+
+name: test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  prepare-environment:
+    name: 🔨 Prepare environment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Setup node
+      uses: actions/setup-node@v2
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules_${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          node_modules-
+    - run: npm ci
+
+  unit-test:
+    name: 🧪 Run tests 
+    needs: prepare-environment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Load node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules_${{ hashFiles('package-lock.json') }} 
+    - run: npm test
+    - name: Tests ✅
+      if: ${{ success() }}
+      run: |
+        curl --request POST \
+        --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header 'content-type: application/json' \
+        --data '{
+          "context": "tests",
+          "state": "success",
+          "description": "Tests passed",
+          "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }'
+    - name: Tests 🚨
+      if: ${{ failure() }}
+      run: |
+        curl --request POST \
+        --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header 'content-type: application/json' \
+        --data '{
+          "context": "tests",
+          "state": "failure",
+          "description": "Tests failed",
+          "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }'
+
+  deploy:
+    name: 🎉 Deploy
+    needs: unit-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    
+    - name: 💾 Read node_modules from cache
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules_${{ hashFiles('package-lock.json') }}
+
+    - name: 🚧 Setup node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+        cache: 'npm'
+      
+    - name: 🤐 Create env file
+      run: |
+        touch .env
+        echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+        echo AWS_ACCESS_KEY_SECRET=${{ secrets.AWS_ACCESS_KEY_SECRET }} >> .env
+        echo AWS_REGION=${{ secrets.AWS_REGION }} >> .env
+
+    - name: ⬇️ Fetch episodes
+      run: npm run fetch
+
+    - name: 🏗️ Build application
+      run: npm run build
+
+    - name: 📂 Sync files
+      uses: milanmk/actions-file-deployer@master
+      timeout-minutes: 30
+      with:
+        remote-protocol: "sftp"
+        remote-host: ${{ secrets.FTP_SERVER }}
+        remote-user: ${{ secrets.FTP_USER }}
+        remote-password: ${{ secrets.FTP_PASSWORD }}
+        local-path: './public'
+        remote-path: './random-episode/'
+        sync: delta
+
