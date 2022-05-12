@@ -54,23 +54,3 @@ jobs:
           "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         }'
 
-  build-artifact:
-    needs: unit-test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build artifact
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-        cache: 'npm'
-    - name: Create env file
-      run: |
-        touch .env
-        echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
-        echo AWS_ACCESS_KEY_SECRET=${{ secrets.AWS_ACCESS_KEY_SECRET }} >> .env
-        echo AWS_REGION=${{ secrets.AWS_REGION }} >> .env
-    - name: Build app
-      run: npm run build:aws
-
-
