@@ -18,7 +18,7 @@ exports[`ArtistTileImage renders the 'random' icon if no image is provided 1`] =
       stroke="currentColor"
       strokeWidth="0"
       style={
-        Object {
+        {
           "color": undefined,
         }
       }
