@@ -16,7 +16,7 @@ episode generator!
 
 ## Blog
 
-You can read about random-episode on 
+You can read about random-episode on
 [my blog](https://thr0n.github.io/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify)
 or on my
 [dev.to](https://dev.to/thr0n/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify-11fm) page.

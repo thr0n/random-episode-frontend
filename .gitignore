@@ -69,3 +69,6 @@ yarn-error.log
 .yarn-integrity
 
 src/data
+/test-results/
+/playwright-report/
+/playwright/.cache/
