@@ -83,7 +83,7 @@ jobs:
   playwright-tests:
     name: 🔎 Playwright tests
     needs: prepare-environment
-    timeout-minutes: 10
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -95,8 +95,6 @@ jobs:
         with:
           path: node_modules
           key: node_modules_${{ hashFiles('package-lock.json') }}
-      #- name: Install dependencies
-      #  run: npm ci
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
@@ -107,8 +105,20 @@ jobs:
         with:
           name: .cache
           path: .cache/
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - name: Run Playwright tests
         run: npm run test:e2e:ci
       - uses: actions/upload-artifact@v3
