@@ -40,26 +40,6 @@ jobs:
           if-no-files-found: error
           path: .cache
 
-  gatsby-build:
-    name: 🚧 Gatsby build
-    runs-on: ubuntu-latest
-    needs: prepare-environment
-    steps:
-      - name: Gatsby build
-        run: npm run build
-      - name: Save public folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: public
-          if-no-files-found: error
-          path: public
-      - name: Save .cache folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: .cache
-          if-no-files-found: error
-          path: .cache
-
   unit-test:
     name: 🧪 Run tests
     needs: prepare-environment
