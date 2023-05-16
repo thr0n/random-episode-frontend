@@ -21,14 +21,7 @@ You can read about random-episode on
 or on my
 [dev.to](https://dev.to/thr0n/how-to-solve-an-everyday-problem-with-node-js-gatsby-and-netlify-11fm) page.
 
-## Auth0
-
-On February 17th, 2021 I added Auth0 authentication to random-episode.
-I think this is a good idea since I do not want to be sued for using
-episode covers or episode titles to which I have no rights.
-So, from now on this is a "private" project, I'm very sorry! 🙁
-
-I made a small screen recording if you are curious how
+I've also made a small screen recording if you are curious how
 random-episode works and looks like:
 
 ![Showcase](./docs/demo.gif)
