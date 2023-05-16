@@ -4,107 +4,168 @@ name: test
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   prepare-environment:
     name: 🔨 Prepare environment
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Setup node
-      uses: actions/setup-node@v2
-    - name: Cache node_modules
-      uses: actions/cache@v2
-      with:
-        path: node_modules
-        key: node_modules_${{ hashFiles('package-lock.json') }}
-        restore-keys: |
-          node_modules-
-    - run: npm ci
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules_${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node_modules-
+      - run: npm install
+      - name: Gatsby build
+        run: npm run build
+      - name: Save public folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          if-no-files-found: error
+          path: public
+      - name: Save .cache folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: .cache
+          if-no-files-found: error
+          path: .cache
 
   unit-test:
-    name: 🧪 Run tests 
+    name: 🧪 Run tests
     needs: prepare-environment
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Load node_modules
-      uses: actions/cache@v2
-      with:
-        path: node_modules
-        key: node_modules_${{ hashFiles('package-lock.json') }} 
-    - run: npm test
-    - name: Tests ✅
-      if: ${{ success() }}
-      run: |
-        curl --request POST \
-        --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        --header 'content-type: application/json' \
-        --data '{
-          "context": "tests",
-          "state": "success",
-          "description": "Tests passed",
-          "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        }'
-    - name: Tests 🚨
-      if: ${{ failure() }}
-      run: |
-        curl --request POST \
-        --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-        --header 'content-type: application/json' \
-        --data '{
-          "context": "tests",
-          "state": "failure",
-          "description": "Tests failed",
-          "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-        }'
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Load node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules_${{ hashFiles('package-lock.json') }}
+      - run: npm test
+      - name: Tests ✅
+        if: ${{ success() }}
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "tests",
+            "state": "success",
+            "description": "Tests passed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
+      - name: Tests 🚨
+        if: ${{ failure() }}
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "tests",
+            "state": "failure",
+            "description": "Tests failed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
+
+  playwright-tests:
+    name: 🔎 Playwright tests
+    needs: prepare-environment
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Load node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules_${{ hashFiles('package-lock.json') }}
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: public
+          path: public
+      - name: Download .cache artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: .cache
+          path: .cache/
+      - name: Get installed Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./package-lock.json').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Run Playwright tests
+        run: npm run test:e2e:ci
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 
   deploy:
     name: 🎉 Deploy
-    needs: unit-test
+    needs: ['unit-test', 'playwright-tests']
     if: false # skip this job for now
     # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    
-    - name: 💾 Read node_modules from cache
-      uses: actions/cache@v2
-      with:
-        path: node_modules
-        key: node_modules_${{ hashFiles('package-lock.json') }}
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: 🚧 Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
-        cache: 'npm'
+      - name: 💾 Read node_modules from cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules_${{ hashFiles('package-lock.json') }}
 
-    - name: ⬇️ Fetch episodes
-      run: npm run fetch
+      - name: 🚧 Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          cache: 'npm'
 
-    - name: 🏗️ Build application
-      run: npm run build
+      - name: ⬇️ Fetch episodes
+        run: npm run fetch
 
-    - name: 📂 Sync files
-      uses: milanmk/actions-file-deployer@master
-      timeout-minutes: 30
-      with:
-        remote-protocol: "sftp"
-        remote-host: ${{ secrets.FTP_SERVER }}
-        remote-user: ${{ secrets.FTP_USER }}
-        remote-password: ${{ secrets.FTP_PASSWORD }}
-        local-path: './public'
-        remote-path: './random-episode/'
-        sync: delta
+      - name: 🏗️ Build application
+        run: npm run build
 
+      - name: 📂 Sync files
+        uses: milanmk/actions-file-deployer@master
+        timeout-minutes: 30
+        with:
+          remote-protocol: 'sftp'
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USER }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          local-path: './public'
+          remote-path: './random-episode/'
+          sync: delta

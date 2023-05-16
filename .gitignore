@@ -68,4 +68,13 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-src/data
+src/data/*
+!src/data/1KpVSqapKAUAtAepWWxPWs.json
+!src/data/artists/
+
+src/data/artists/*
+!src/data/artists/3meJIgRw7YleJrmbpbJK6S.json
+
+/test-results/
+/playwright-report/
+/playwright/.cache/
