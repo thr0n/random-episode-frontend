@@ -118,7 +118,7 @@ jobs:
       - run: npx playwright install --with-deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - run: npx playwright install-deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
       - name: Run Playwright tests
         run: npm run test:e2e:ci
       - uses: actions/upload-artifact@v3
