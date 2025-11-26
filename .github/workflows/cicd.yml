@@ -28,13 +28,13 @@ jobs:
       - name: Gatsby build
         run: npm run build
       - name: Save public folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: public
           if-no-files-found: error
           path: public
       - name: Save .cache folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: .cache
           if-no-files-found: error
@@ -121,7 +121,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
       - name: Run Playwright tests
         run: npm run test:e2e:ci
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: playwright-report
